@@ -6,29 +6,22 @@ WORKDIR /app
 
 # Copy package.json files first for better caching
 COPY package*.json ./
-COPY client/package*.json ./client/
 
-# Copy entire client directory (excluding node_modules via .dockerignore)
-COPY client/ ./client/
-
-# Debug: Check what was copied
-RUN ls -la client/
+# Copy source files
+COPY src ./src/
+COPY public ./public/
+COPY tsconfig.json ./
+COPY server/ ./server/
 
 # Install dependencies
 RUN npm ci --only=production
-RUN cd client && npm install --include=dev
+RUN npm install
 
-# Copy remaining source code (excluding client which is already copied)
+# Copy remaining source code
 COPY server/ ./server/
 
 # Build the React app
-WORKDIR /app/client
 RUN npm run build
-RUN echo "Build completed, checking directory contents:"
-RUN ls -la
-RUN echo "Checking if build directory exists:"
-RUN ls -la build/ || echo "Build directory not found"
-WORKDIR /app
 
 # Expose port
 EXPOSE 5000
@@ -38,4 +31,4 @@ ENV NODE_ENV=production
 ENV PORT=5000
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["npm", "run", "start:server"]
