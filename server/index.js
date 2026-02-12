@@ -219,4 +219,6 @@ app.listen(PORT, () => {
   console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
   console.log(`Serving static files from: ${path.join(__dirname, '../build')}`);
   console.log(`Build directory exists: ${require('fs').existsSync(path.join(__dirname, '../build'))}`);
+}).on('error', (err) => {
+  console.error('Server error:', err);
 });
