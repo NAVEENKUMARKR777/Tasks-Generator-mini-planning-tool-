@@ -19,7 +19,9 @@ RUN cd client && npm ci --only=production
 COPY server/ ./server/
 
 # Build the React app
-RUN cd client && npm run build
+WORKDIR /app/client
+RUN npm run build
+WORKDIR /app
 
 # Expose port
 EXPOSE 5000
