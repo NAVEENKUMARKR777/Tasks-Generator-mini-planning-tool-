@@ -16,8 +16,12 @@ if (!process.env.GROQ_API_KEY || process.env.GROQ_API_KEY === 'your_groq_api_key
   process.exit(1);
 }
 
+console.log('Starting server initialization...');
+
 const app = express();
 const PORT = 5000; // Force port 5000 for Railway deployment
+
+console.log('Express app created, setting up middleware...');
 
 app.use(cors());
 app.use(express.json());
@@ -51,7 +55,19 @@ const templates = {
   }
 };
 
+console.log('Setting up static file serving...');
+app.use(express.static(path.join(__dirname, '../build')));
+
+// Add logging for static file requests
+app.use((req, res, next) => {
+  console.log(`Request: ${req.method} ${req.url}`);
+  next();
+});
+
+console.log('Setting up API routes...');
+
 app.get('/api/health', (req, res) => {
+  console.log('Health check endpoint hit');
   const health = {
     backend: 'healthy',
     database: 'connected',
@@ -213,12 +229,25 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
+console.log('About to start server...');
+console.log(`Attempting to listen on port ${PORT}`);
+
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server successfully started on port ${PORT}`);
   console.log('Groq API configured and ready');
   console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
   console.log(`Serving static files from: ${path.join(__dirname, '../build')}`);
   console.log(`Build directory exists: ${require('fs').existsSync(path.join(__dirname, '../build'))}`);
+  console.log('✅ Server is ready and accepting requests');
 }).on('error', (err) => {
-  console.error('Server error:', err);
+  console.error('❌ Server failed to start:', err);
+  console.error('Error details:', {
+    code: err.code,
+    message: err.message,
+    port: err.port,
+    address: err.address
+  });
+  process.exit(1);
 });
+
+console.log('Server setup complete, waiting for connection...');
