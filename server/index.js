@@ -18,6 +18,17 @@ if (!process.env.GROQ_API_KEY || process.env.GROQ_API_KEY === 'your_groq_api_key
 
 console.log('Starting server initialization...');
 
+// Add global error handling
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1);
+});
+
 const app = express();
 const PORT = process.env.PORT || 8080; // Use Railway's PORT environment variable
 
