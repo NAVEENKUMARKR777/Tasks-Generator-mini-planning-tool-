@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
-interface Risk {
-  risk: string;
-  mitigation: string;
-}
-
 interface GeneratedTasks {
   userStories: string[];
   engineeringTasks: {
@@ -16,7 +11,7 @@ interface GeneratedTasks {
     testing: string[];
     devops: string[];
   };
-  risks: Risk[];
+  risks: { risk: string; mitigation: string }[];
   successMetrics: string[];
 }
 
