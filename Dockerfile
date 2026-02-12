@@ -9,7 +9,10 @@ COPY package*.json ./
 COPY client/package*.json ./client/
 
 # Copy client directory structure
-COPY client/ ./client/
+COPY client/package*.json ./client/
+COPY client/src ./client/src/
+COPY client/public ./client/public/
+COPY client/tsconfig.json ./client/
 
 # Install dependencies
 RUN npm ci --only=production
