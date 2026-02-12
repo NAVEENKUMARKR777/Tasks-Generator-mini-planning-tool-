@@ -21,7 +21,10 @@ COPY server/ ./server/
 # Build the React app
 WORKDIR /app/client
 RUN npm run build
-RUN ls -la build/
+RUN echo "Build completed, checking directory contents:"
+RUN ls -la
+RUN echo "Checking if build directory exists:"
+RUN ls -la build/ || echo "Build directory not found"
 WORKDIR /app
 
 # Expose port
