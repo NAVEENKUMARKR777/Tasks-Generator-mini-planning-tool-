@@ -77,6 +77,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// Add a catch-all route to see ALL requests
+app.use('*', (req, res, next) => {
+  console.log(`Catch-all route hit: ${req.method} ${req.url}`);
+  next();
+});
+
 console.log('Setting up API routes...');
 
 // Add a simple test endpoint
