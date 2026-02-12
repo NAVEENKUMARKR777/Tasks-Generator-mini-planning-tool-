@@ -227,7 +227,10 @@ app.use((req, res, next) => {
 
 app.get('*', (req, res) => {
   console.log(`Serving index.html for: ${req.url}`);
-  res.sendFile(path.join(__dirname, '../build/index.html'));
+  const indexPath = path.join(__dirname, '../build/index.html');
+  console.log(`Index.html path: ${indexPath}`);
+  console.log(`Index.html exists: ${require('fs').existsSync(indexPath)}`);
+  res.sendFile(indexPath);
 });
 
 console.log('About to start server...');
