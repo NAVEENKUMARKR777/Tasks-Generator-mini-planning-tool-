@@ -2,12 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
-interface Task {
-  id: string;
-  content: string;
-  category: string;
-}
-
 interface Risk {
   risk: string;
   mitigation: string;
@@ -36,11 +30,11 @@ interface Spec {
   created_at: string;
 }
 
-interface Template {
-  name: string;
-  constraints: string;
-  users: string;
-}
+// interface Template {
+//   name: string;
+//   constraints: string;
+//   users: string;
+// }
 
 function App() {
   const [currentView, setCurrentView] = useState<'home' | 'status' | 'history'>('home');
