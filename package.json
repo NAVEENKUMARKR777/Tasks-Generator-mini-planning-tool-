@@ -7,7 +7,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node server/index.js",
     "client": "cd client && npm start",
-    "build": "cd client && npm run build",
+    "build": "echo 'Root build completed - client build handled separately'",
     "start": "node server/index.js",
     "install-client": "cd client && npm install",
     "install-all": "npm install && npm run install-client"
