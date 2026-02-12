@@ -11,6 +11,9 @@ COPY client/package*.json ./client/
 # Copy entire client directory (excluding node_modules via .dockerignore)
 COPY client/ ./client/
 
+# Debug: Check what was copied
+RUN ls -la client/
+
 # Install dependencies
 RUN npm ci --only=production
 RUN cd client && npm install --include=dev
