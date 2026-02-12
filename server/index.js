@@ -67,6 +67,12 @@ app.use((req, res, next) => {
 
 console.log('Setting up API routes...');
 
+// Add a simple test endpoint
+app.get('/', (req, res) => {
+  console.log('Root endpoint hit directly!');
+  res.send('<h1>Server is working!</h1><p>Time: ' + new Date().toISOString() + '</p>');
+});
+
 app.get('/api/health', (req, res) => {
   console.log('Health check endpoint hit');
   const health = {
