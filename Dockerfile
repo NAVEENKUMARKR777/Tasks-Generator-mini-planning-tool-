@@ -21,6 +21,7 @@ COPY server/ ./server/
 # Build the React app
 WORKDIR /app/client
 RUN npm run build
+RUN ls -la build/
 WORKDIR /app
 
 # Expose port
