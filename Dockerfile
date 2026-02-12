@@ -8,8 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY client/package*.json ./client/
 
-# Copy client directory structure
-COPY client/package*.json ./client/
+# Copy client source files
 COPY client/src ./client/src/
 COPY client/public ./client/public/
 COPY client/tsconfig.json ./client/
