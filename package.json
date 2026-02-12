@@ -4,7 +4,7 @@
   "description": "A mini planning tool for generating user stories and engineering tasks from feature ideas using AI",
   "main": "server/index.js",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm start\"",
+    "dev": "concurrently \"npm run server\" \"npm run start:client\"",
     "server": "node server/index.js",
     "start": "node server/index.js",
     "build": "react-scripts build",
