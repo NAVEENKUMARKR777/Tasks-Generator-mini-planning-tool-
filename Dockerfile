@@ -8,12 +8,15 @@ WORKDIR /app
 COPY package*.json ./
 COPY client/package*.json ./client/
 
+# Copy client directory structure
+COPY client/ ./client/
+
 # Install dependencies
 RUN npm ci --only=production
 RUN cd client && npm ci --only=production
 
-# Copy source code
-COPY . .
+# Copy remaining source code (excluding client which is already copied)
+COPY server/ ./server/
 
 # Build the React app
 RUN cd client && npm run build
