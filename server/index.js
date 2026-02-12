@@ -209,4 +209,7 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log('Groq API configured and ready');
+  console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+  console.log(`Serving static files from: ${path.join(__dirname, '../build')}`);
+  console.log(`Build directory exists: ${require('fs').existsSync(path.join(__dirname, '../build'))}`);
 });
