@@ -19,9 +19,10 @@ if (!process.env.GROQ_API_KEY || process.env.GROQ_API_KEY === 'your_groq_api_key
 console.log('Starting server initialization...');
 
 const app = express();
-const PORT = process.env.PORT || 8080; // Use Railway's PORT or fallback to 8080
+const PORT = process.env.PORT || 8080; // Use Railway's PORT environment variable
 
 console.log('Express app created, setting up middleware...');
+console.log(`Railway PORT environment variable: ${process.env.PORT}`);
 console.log(`Will attempt to start on port: ${PORT}`);
 
 app.use(cors());
