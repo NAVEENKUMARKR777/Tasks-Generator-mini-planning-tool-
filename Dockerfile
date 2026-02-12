@@ -14,7 +14,6 @@ COPY tsconfig.json ./
 COPY server/ ./server/
 
 # Install dependencies
-RUN npm ci --only=production
 RUN npm install
 
 # Copy remaining source code
