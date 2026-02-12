@@ -8,9 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 COPY client/package*.json ./client/
 
-# Copy client source files
-COPY client/src ./client/src/
-COPY client/public ./client/public/
+# Copy entire client directory (excluding node_modules via .dockerignore)
+COPY client/ ./client/
 
 # Install dependencies
 RUN npm ci --only=production
