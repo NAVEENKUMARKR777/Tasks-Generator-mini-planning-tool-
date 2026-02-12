@@ -17,7 +17,7 @@ if (!process.env.GROQ_API_KEY || process.env.GROQ_API_KEY === 'your_groq_api_key
 }
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000; // Force port 5000 for Railway deployment
 
 app.use(cors());
 app.use(express.json());
