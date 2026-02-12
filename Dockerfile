@@ -20,7 +20,7 @@ COPY server/ ./server/
 
 # Build the React app
 WORKDIR /app/client
-RUN npx react-scripts build
+RUN ./node_modules/.bin/react-scripts build
 WORKDIR /app
 
 # Expose port
