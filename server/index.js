@@ -202,7 +202,14 @@ app.get('/api/spec/:id', (req, res) => {
 
 app.use(express.static(path.join(__dirname, '../build')));
 
+// Add logging for static file requests
+app.use((req, res, next) => {
+  console.log(`Request: ${req.method} ${req.url}`);
+  next();
+});
+
 app.get('*', (req, res) => {
+  console.log(`Serving index.html for: ${req.url}`);
   res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
